@@ -1,6 +1,7 @@
-/**
+/*
+dddddddd
  * @name initMPU6050
- * @brief MPU6050 센서를 찾고, 범위를 설정하여 초기화합니다.
+ * @brief MPU6050 센서를 찾고, 범위를 설정하여 초기화합니다.'
  */
 void initMPU6050() {
   if (!mpu.begin()) {
