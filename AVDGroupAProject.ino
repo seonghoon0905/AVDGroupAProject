@@ -12,9 +12,16 @@
 SoftwareSerial BTSerial(3, 2); // RX, TX 핀 교차 연결 (3번핀->TX, 2번핀->RX)
 Adafruit_MPU6050 mpu;
 
+// 버튼 핀 추가
 const int BUTTON_PIN_1 = 5;  
 const int BUTTON_PIN_2 = 6; 
 const int BUTTON_PIN_3 = 7; 
+const int BUTTON_PIN_4 = 8;
+
+// ◀️ 조이스틱 핀 추가
+const int joyX_Pin = A0; // X축
+const int joyY_Pin = A1; // Y축
+const int joySW_Pin = 9; // 버튼 (D8)
 
 // ---------------------------------
 // 1. 초기화 (Setup)
@@ -38,5 +45,6 @@ void loop() {
       previousMillis = currentMillis;
       sendSensorData(); // 6축 센서 데이터를 전송하는 함수 호출
       sendButtonData(); // 2. 버튼 3개 데이터 전송
+      sendJoystickData();
     }
 }

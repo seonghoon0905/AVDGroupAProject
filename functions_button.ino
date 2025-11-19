@@ -6,6 +6,7 @@ void initButtons() {
   pinMode(BUTTON_PIN_1, INPUT_PULLUP);
   pinMode(BUTTON_PIN_2, INPUT_PULLUP);
   pinMode(BUTTON_PIN_3, INPUT_PULLUP);
+  pinMode(BUTTON_PIN_4, INPUT_PULLUP);
   Serial.println("Buttons Initialized");
 }
 
@@ -22,7 +23,6 @@ void sendButtonData() {
   BTSerial.print("B1 "); // 키: "B1"
   if (digitalRead(BUTTON_PIN_1) == LOW) {
     BTSerial.println("1");
-
   } else {
     BTSerial.println("0");
   }
@@ -31,6 +31,7 @@ void sendButtonData() {
   BTSerial.print("B2 "); // 키: "B2"
   if (digitalRead(BUTTON_PIN_2) == LOW) {
     BTSerial.println("1");
+    
   } else {
     BTSerial.println("0");
   }
@@ -39,6 +40,15 @@ void sendButtonData() {
   BTSerial.print("B3 "); // 키: "B3"
   if (digitalRead(BUTTON_PIN_3) == LOW) {
     BTSerial.println("1");
+  } else {
+    BTSerial.println("0");
+  }
+
+  // 버튼 4 전송
+  BTSerial.print("B4 "); // 키: "B3"
+  if (digitalRead(BUTTON_PIN_4) == LOW) {
+    BTSerial.println("1");
+
   } else {
     BTSerial.println("0");
   }
