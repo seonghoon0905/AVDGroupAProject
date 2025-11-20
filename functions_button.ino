@@ -19,16 +19,16 @@ void sendButtonData() {
   // - 안 누르면 HIGH(1)
   // - 누르면 LOW(0)
   
-  // 버튼 1 전송
-  BTSerial.print("B1 "); // 키: "B1"
+  // X 전송
+  BTSerial.print("X"); 
   if (digitalRead(BUTTON_PIN_1) == LOW) {
     BTSerial.println("1");
   } else {
     BTSerial.println("0");
   }
 
-  // 버튼 2 전송
-  BTSerial.print("B2 "); // 키: "B2"
+  // Y 전송
+  BTSerial.print("Y");
   if (digitalRead(BUTTON_PIN_2) == LOW) {
     BTSerial.println("1");
     
@@ -36,16 +36,16 @@ void sendButtonData() {
     BTSerial.println("0");
   }
 
-  // 버튼 3 전송
-  BTSerial.print("B3 "); // 키: "B3"
+  // B 전송
+  BTSerial.print("B")
   if (digitalRead(BUTTON_PIN_3) == LOW) {
     BTSerial.println("1");
   } else {
     BTSerial.println("0");
   }
 
-  // 버튼 4 전송
-  BTSerial.print("B4 "); // 키: "B3"
+  // A 전송
+  BTSerial.print("A");
   if (digitalRead(BUTTON_PIN_4) == LOW) {
     BTSerial.println("1");
 

@@ -23,6 +23,9 @@ const int joyX_Pin = A0; // X축
 const int joyY_Pin = A1; // Y축
 const int joySW_Pin = 9; // 버튼 (D8)
 
+// 스피커 핀 추가
+const int SPEAKER_PIN = 12; // 스피커 핀 (D8)
+
 // ---------------------------------
 // 1. 초기화 (Setup)
 // ---------------------------------
@@ -30,6 +33,7 @@ void setup() {
   initButtons();
   initSerial();   // 시리얼 및 블루투스 초기화
   initMPU6050();  // MPU6050 센서 초기화
+  initSpeaker(); 
 }
 
 // --- 주기 설정 ---
