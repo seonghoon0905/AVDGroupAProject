@@ -13,10 +13,10 @@ SoftwareSerial BTSerial(3, 2); // RX, TX 핀 교차 연결 (3번핀->TX, 2번핀
 Adafruit_MPU6050 mpu;
 
 // 버튼 핀 추가
-const int BUTTON_PIN_1 = 5;  
-const int BUTTON_PIN_2 = 6; 
-const int BUTTON_PIN_3 = 7; 
-const int BUTTON_PIN_4 = 8;
+const int BUTTON_PIN_X = 5;  
+const int BUTTON_PIN_Y = 6; 
+const int BUTTON_PIN_B = 7; 
+const int BUTTON_PIN_A = 8;
 
 // ◀️ 조이스틱 핀 추가
 const int joyX_Pin = A0; // X축
