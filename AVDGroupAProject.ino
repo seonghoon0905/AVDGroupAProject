@@ -26,6 +26,9 @@ const int joySW_Pin = 9; // 버튼 (D8)
 // 스피커 핀 추가
 const int SPEAKER_PIN = 12; // 스피커 핀 (D8)
 
+// 터치 센서 핀 추가
+const int TOUCH_PIN = 13; // 터치 센서 핀 (D13)
+
 // ---------------------------------
 // 1. 초기화 (Setup)
 // ---------------------------------
@@ -34,6 +37,7 @@ void setup() {
   initSerial();   // 시리얼 및 블루투스 초기화
   initMPU6050();  // MPU6050 센서 초기화
   initSpeaker(); 
+  initTouch();
 }
 
 // --- 주기 설정 ---
@@ -50,5 +54,7 @@ void loop() {
       sendSensorData(); // 6축 센서 데이터를 전송하는 함수 호출
       sendButtonData(); // 2. 버튼 3개 데이터 전송
       sendJoystickData();
+      sendTouchData();
     }
+    //checkIncomingData();
 }

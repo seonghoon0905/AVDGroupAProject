@@ -37,7 +37,7 @@ void sendButtonData() {
   }
 
   // B 전송
-  BTSerial.print("B")
+  BTSerial.print("B");
   if (digitalRead(BUTTON_PIN_B) == LOW) {
     BTSerial.println("1");
   } else {
