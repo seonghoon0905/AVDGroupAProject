@@ -1,18 +1,18 @@
 /**
  * @name initButtons
- * @brief 버튼 핀 3개를 INPUT_PULLUP 모드로 초기화합니다.
+ * @brief 버튼 핀 4개를 INPUT_PULLUP 모드로 초기화합니다.
  */
 void initButtons() {
-  pinMode(BUTTON_PIN_1, INPUT_PULLUP);
-  pinMode(BUTTON_PIN_2, INPUT_PULLUP);
-  pinMode(BUTTON_PIN_3, INPUT_PULLUP);
-  pinMode(BUTTON_PIN_4, INPUT_PULLUP);
+  pinMode(BUTTON_PIN_X, INPUT_PULLUP);
+  pinMode(BUTTON_PIN_Y, INPUT_PULLUP);
+  pinMode(BUTTON_PIN_B, INPUT_PULLUP);
+  pinMode(BUTTON_PIN_A, INPUT_PULLUP);
   Serial.println("Buttons Initialized");
 }
 
 /**
  * @name sendButtonData
- * @brief 버튼 3개의 상태를 "B[번호] ON/OFF" 양식으로 블루투스 전송
+ * @brief 버튼 4개의 상태를 "B[번호] ON/OFF" 양식으로 블루투스 전송
  */
 void sendButtonData() {
   // 1. 버튼 값 읽기 (INPUT_PULLUP)
@@ -21,7 +21,7 @@ void sendButtonData() {
   
   // X 전송
   BTSerial.print("X"); 
-  if (digitalRead(BUTTON_PIN_1) == LOW) {
+  if (digitalRead(BUTTON_PIN_X) == LOW) {
     BTSerial.println("1");
   } else {
     BTSerial.println("0");
@@ -29,7 +29,7 @@ void sendButtonData() {
 
   // Y 전송
   BTSerial.print("Y");
-  if (digitalRead(BUTTON_PIN_2) == LOW) {
+  if (digitalRead(BUTTON_PIN_Y) == LOW) {
     BTSerial.println("1");
     
   } else {
@@ -38,7 +38,7 @@ void sendButtonData() {
 
   // B 전송
   BTSerial.print("B")
-  if (digitalRead(BUTTON_PIN_3) == LOW) {
+  if (digitalRead(BUTTON_PIN_B) == LOW) {
     BTSerial.println("1");
   } else {
     BTSerial.println("0");
@@ -46,7 +46,7 @@ void sendButtonData() {
 
   // A 전송
   BTSerial.print("A");
-  if (digitalRead(BUTTON_PIN_4) == LOW) {
+  if (digitalRead(BUTTON_PIN_A) == LOW) {
     BTSerial.println("1");
 
   } else {
