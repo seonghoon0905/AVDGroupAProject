@@ -20,7 +20,7 @@ void sendButtonData() {
   // - 누르면 LOW(0)
   
   // X 전송
-  BTSerial.print("X"); 
+  BTSerial.print("X "); 
   if (digitalRead(BUTTON_PIN_X) == LOW) {
     BTSerial.println("1");
   } else {
@@ -28,7 +28,7 @@ void sendButtonData() {
   }
 
   // Y 전송
-  BTSerial.print("Y");
+  BTSerial.print("Y ");
   if (digitalRead(BUTTON_PIN_Y) == LOW) {
     BTSerial.println("1");
     
@@ -37,7 +37,7 @@ void sendButtonData() {
   }
 
   // B 전송
-  BTSerial.print("B");
+  BTSerial.print("B ");
   if (digitalRead(BUTTON_PIN_B) == LOW) {
     BTSerial.println("1");
   } else {
@@ -45,7 +45,7 @@ void sendButtonData() {
   }
 
   // A 전송
-  BTSerial.print("A");
+  BTSerial.print("A ");
   if (digitalRead(BUTTON_PIN_A) == LOW) {
     BTSerial.println("1");
 

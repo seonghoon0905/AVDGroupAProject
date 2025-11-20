@@ -10,16 +10,31 @@ void initSerial() {
 
 /**
  * @name checkIncomingData
- * @brief Unity로부터 수신된 데이터가 있는지 확인하고 처리합니다. (예: 진동)
+ * @brief Unity로부터 수신된 데이터를 처리합니다.
+ * (명령어 예시: "S 1" -> 1번 효과음 재생)
  */
 void checkIncomingData() {
+  // 데이터가 들어왔는지 확인
   if (BTSerial.available()) {
-    char c = BTSerial.read();
-    Serial.print("Received from Unity: "); // PC 모니터에 디버깅 출력
-    Serial.println(c);
+    
+    // 1. 줄바꿈 문자('\n')가 나올 때까지 문자열 전체를 읽음
+    String inputString = BTSerial.readStringUntil('\n'); 
+    inputString.trim(); // 앞뒤 공백 제거 (혹시 모를 오류 방지)
 
-    // if (c == 'V') {
-    //   // 진동 모터 켜는 코드
-    // }
+    // 2. 데이터 해석 (Parsing)
+    // 만약 문자열이 'S'로 시작한다면? (Sound 명령)
+    if (inputString.startsWith("S")) {
+      
+      // "S " 다음 부분(인덱스 2부터 끝까지)을 잘라내서 숫자로 변환
+      // 예: "S 1" -> "1" -> 1
+      int soundType = inputString.substring(2).toInt();
+      
+      // 3. 우리가 만든 스피커 함수 호출!
+      playSoundEffect(soundType);
+      
+      // (디버깅용: PC 모니터에 출력)
+      Serial.print("Unity Command Recieved: Sound Type ");
+      Serial.println(soundType);
+    }
   }
 }

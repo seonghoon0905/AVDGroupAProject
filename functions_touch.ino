@@ -9,7 +9,7 @@
 
 void initTouch() {
   pinMode(TOUCH_PIN, INPUT);
-  Serial.println("Touch Sensor Initialized (D10)");
+  Serial.println("Touch Sensor Initialized (D13)");
 }
 
 /**
@@ -23,10 +23,4 @@ void sendTouchData() {
   // 1. 블루투스로 전송
   BTSerial.print("T "); // 키: "T"
   BTSerial.println(touchState); // 값: 1 or 0 (줄바꿈 포함)
-  
-  // 2. PC 시리얼 모니터로 디버깅 (확인용)
-  // (데이터가 너무 많아 시리얼 모니터가 지저분하면 주석 처리하세요)
-  
-  Serial.print("T ");
-  Serial.println(touchState);
 }
