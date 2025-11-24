@@ -9,7 +9,6 @@
 
 void initTouch() {
   pinMode(TOUCH_PIN, INPUT);
-  Serial.println("Touch Sensor Initialized (D13)");
 }
 
 /**
@@ -21,6 +20,6 @@ void sendTouchData() {
   int touchState = digitalRead(TOUCH_PIN);
 
   // 1. 블루투스로 전송
-  BTSerial.print("T "); // 키: "T"
-  BTSerial.println(touchState); // 값: 1 or 0 (줄바꿈 포함)
+  Serial.print("T "); // 키: "T"
+  Serial.println(touchState); // 값: 1 or 0 (줄바꿈 포함)
 }

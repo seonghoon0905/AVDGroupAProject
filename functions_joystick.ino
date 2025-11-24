@@ -11,10 +11,10 @@ void sendJoystickData() {
   int joySW = digitalRead(joySW_Pin);
 
   // 3. J:x,y,button 형식으로 블루투스 전송
-  BTSerial.print("J "); // 키: "J"
-  BTSerial.print(joyX);
-  BTSerial.print(",");
-  BTSerial.print(joyY);
-  BTSerial.print(",");
-  BTSerial.println(joySW); 
+  Serial.print("J "); // 키: "J"
+  Serial.print(joyX);
+  Serial.print(",");
+  Serial.print(joyY);
+  Serial.print(",");
+  Serial.println(joySW); 
 }

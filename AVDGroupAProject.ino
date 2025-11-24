@@ -4,13 +4,25 @@
 #include <Adafruit_MPU6050.h>
 #include <Adafruit_Sensor.h>
 #include <Wire.h>
-#include <SoftwareSerial.h> // 블루투스 라이브러리
+
+// ==========================================
+// 큐 설정
+// ==========================================
+#define QUEUE_SIZE 10          // 최대 10개 명령어 저장 가능
+String cmdQueue[QUEUE_SIZE];   // 명령어 저장소 (문자열 배열)
+int queueHead = 0;             // 데이터를 넣을 위치
+int queueTail = 0;             // 데이터를 꺼낼 위치
+// 수신 중인 문자열 임시 저장소
+String inputBuffer = "";
 
 // ---------------------------------
 // 전역 변수 및 객체 선언
 // ---------------------------------
-SoftwareSerial BTSerial(3, 2); // RX, TX 핀 교차 연결 (3번핀->TX, 2번핀->RX)
 Adafruit_MPU6050 mpu;
+
+bool isBtConnected = false;          // 현재 연결 상태 (true: 연결됨, false: 끊김)
+unsigned long lastPingTime = 0;      // 마지막으로 'P' 신호를 받은 시간
+const long connectionTimeout = 2000; // 2초(2000ms) 동안 신호 없으면 끊김 처리
 
 // 버튼 핀 추가
 const int BUTTON_PIN_X = 5;  
@@ -48,6 +60,8 @@ const long interval = 100;
 // 2. 메인 루프 (Loop)
 // ---------------------------------
 void loop() {
+    receiveToQueue();
+
     unsigned long currentMillis = millis();
     if (currentMillis - previousMillis >= interval) {
       previousMillis = currentMillis;
@@ -56,5 +70,8 @@ void loop() {
       sendJoystickData();
       sendTouchData();
     }
-    //checkIncomingData();
+
+    // 큐에 쌓인 명령 일괄 처리 (소리 재생 등)
+    processQueue();
+    checkConnectionStatus();
 }

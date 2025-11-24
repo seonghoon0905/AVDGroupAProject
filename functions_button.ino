@@ -7,7 +7,6 @@ void initButtons() {
   pinMode(BUTTON_PIN_Y, INPUT_PULLUP);
   pinMode(BUTTON_PIN_B, INPUT_PULLUP);
   pinMode(BUTTON_PIN_A, INPUT_PULLUP);
-  Serial.println("Buttons Initialized");
 }
 
 /**
@@ -20,36 +19,36 @@ void sendButtonData() {
   // - 누르면 LOW(0)
   
   // X 전송
-  BTSerial.print("X "); 
+  Serial.print("X "); 
   if (digitalRead(BUTTON_PIN_X) == LOW) {
-    BTSerial.println("1");
+    Serial.println("1");
   } else {
-    BTSerial.println("0");
+    Serial.println("0");
   }
 
   // Y 전송
-  BTSerial.print("Y ");
+  Serial.print("Y ");
   if (digitalRead(BUTTON_PIN_Y) == LOW) {
-    BTSerial.println("1");
+    Serial.println("1");
     
   } else {
-    BTSerial.println("0");
+    Serial.println("0");
   }
 
   // B 전송
-  BTSerial.print("B ");
+  Serial.print("B ");
   if (digitalRead(BUTTON_PIN_B) == LOW) {
-    BTSerial.println("1");
+    Serial.println("1");
   } else {
-    BTSerial.println("0");
+    Serial.println("0");
   }
 
   // A 전송
-  BTSerial.print("A ");
+  Serial.print("A ");
   if (digitalRead(BUTTON_PIN_A) == LOW) {
-    BTSerial.println("1");
+    Serial.println("1");
 
   } else {
-    BTSerial.println("0");
+    Serial.println("0");
   }
 }
