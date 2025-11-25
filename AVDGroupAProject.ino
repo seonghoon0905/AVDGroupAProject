@@ -4,6 +4,8 @@
 #include <Adafruit_MPU6050.h>
 #include <Adafruit_Sensor.h>
 #include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
 
 // ==========================================
 // 큐 설정
@@ -14,6 +16,13 @@ int queueHead = 0;             // 데이터를 넣을 위치
 int queueTail = 0;             // 데이터를 꺼낼 위치
 // 수신 중인 문자열 임시 저장소
 String inputBuffer = "";
+
+// ==========================================
+// OLED 설정
+// ==========================================
+#define SCREEN_WIDTH 128 
+#define SCREEN_HEIGHT 32 
+#define OLED_RESET    -1
 
 // ---------------------------------
 // 전역 변수 및 객체 선언
@@ -41,6 +50,13 @@ const int SPEAKER_PIN = 12; // 스피커 핀 (D8)
 // 터치 센서 핀 추가
 const int TOUCH_PIN = 13; // 터치 센서 핀 (D13)
 
+// OLED 객체 생성
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+// OLED 갱신용 타이머 변수 (화면은 천천히 갱신해도 됨)
+unsigned long previousOledMillis = 0;
+const long oledInterval = 250; // 0.25초마다 화면 갱신 (너무 빠르면 통신 느려짐)
+
 // ---------------------------------
 // 1. 초기화 (Setup)
 // ---------------------------------
@@ -50,6 +66,7 @@ void setup() {
   initMPU6050();  // MPU6050 센서 초기화
   initSpeaker(); 
   initTouch();
+  initOLED();
 }
 
 // --- 주기 설정 ---
@@ -69,6 +86,7 @@ void loop() {
       sendButtonData(); // 2. 버튼 3개 데이터 전송
       sendJoystickData();
       sendTouchData();
+      updateScreen();
     }
 
     // 큐에 쌓인 명령 일괄 처리 (소리 재생 등)
